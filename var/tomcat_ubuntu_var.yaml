@@ -1,0 +1,9 @@
+---
+ tomcat_download_uri: "https://downloads.apache.org/tomcat/tomcat-8/v8.5.61/bin/apache-tomcat-8.5.61.zip"
+ tomcat_download_path: "/tmp/apache-tomcat-8.5.61.zip"
+ tomcat_download_source: "https://downloads.apache.org/tomcat/tomcat-8/v8.5.61/bin/apache-tomcat-8.5.61.zip"
+ tomcat_download_location: "/tmp/apache-tomcat-8.5.61.zip"
+ tomcat_install_path: "/opt/tomcat"
+ user_name: tomcat
+ jdk_package_name:  openjdk-8-jdk
+ _java_package: openjdk-8-jdk

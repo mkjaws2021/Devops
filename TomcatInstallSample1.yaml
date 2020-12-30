@@ -1,0 +1,23 @@
+---
+-  name: Install Tomcat server
+   hosts: all
+   become: yes
+   tasks:
+     - name: Install jdk 
+       apt:
+         name: openjdk-8-jdk
+         state: present
+         update_cache: yes
+     - name: Install tomcat
+       apt:
+         name: tomcat8
+         state: present
+         update_cache: yes
+     - name: Get gameof Life of war
+       get_url:
+          url: https://referenceappkhaja.s3-us-west-2.amazonaws.com/gameoflife.war
+          dest: /var/lib/tomcat8/webapps
+     - name: Restart tomcat8 server
+       service: 
+          name: tomcat8
+          state: restarted     

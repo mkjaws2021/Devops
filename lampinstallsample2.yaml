@@ -1,0 +1,34 @@
+---
+- name: Install Lamp server on ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Apache2 server
+      apt: 
+        name: apache2
+        state: present
+        update_cache: yes
+    - name: Install Php 
+      apt: 
+        name: php
+        state: present
+        update_cache: yes
+    - name: Install Php-libcache
+      apt: 
+        name: libapache2-mod-php
+        state: present
+        update_cache: yes
+    - name: Install Php-mysql
+      apt: 
+        name: php-mysql
+        state: present
+        update_cache: yes
+    - name: Install Php-cli
+      apt: 
+        name: php-cli
+        state: present
+        update_cache: yes
+    - name: Add php.info
+      copy:
+        content: "<?php phpinfo(); ?>"
+        dest:  /var/www/html/info.php

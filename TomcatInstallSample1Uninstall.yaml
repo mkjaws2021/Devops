@@ -1,0 +1,19 @@
+---
+-  name: UnInstall Tomcat server
+   hosts: all
+   become: yes
+   tasks:
+     - name: UnInstall jdk 
+       apt:
+         name: openjdk-8-jdk
+         state: absent
+         update_cache: yes
+     - name: UnInstall tomcat
+       apt:
+         name: tomcat8
+         state: absent
+         update_cache: yes
+     - name: Remove gameof Life of war file
+       file:
+           path: /var/lib/tomcat8/webapps/gameoflife*
+           state: absent

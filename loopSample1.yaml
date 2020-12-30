@@ -1,0 +1,13 @@
+---
+  - name: Loop variable testing
+    hosts: webserver
+    become: yes
+    tasks:
+       - name: Install tree,nano and git using Loop
+         package:
+           name: "{{ item }}"
+           state: present
+         loop:
+           - git
+           - nano
+           - tree

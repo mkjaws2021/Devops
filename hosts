@@ -1,0 +1,12 @@
+#localhost 
+[ubuntu]
+172.31.45.220
+
+[centos]
+172.31.39.156
+
+
+[webserver]
+172.31.39.156  package_name=httpd
+172.31.45.220  package_name=apache2
+

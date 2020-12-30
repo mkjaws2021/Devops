@@ -1,0 +1,14 @@
+---
+  - name: Install lampserver using variable on webserver
+    hosts: webserver
+    become: yes
+    tasks: 
+      - name: Install lampserver
+        package:
+            name: "{{ package_name }}"
+            state: present
+      - name: Enable service
+        service:
+            name: "{{ package_name }}"
+            enabled: yes
+            

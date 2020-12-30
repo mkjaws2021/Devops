@@ -1,0 +1,38 @@
+---
+- name: Un-Install Lamp server on ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - name: Un-Install Apache2 server
+      apt: 
+        name: apache2
+        state: absent
+        update_cache: yes
+    - name: Un-Install Php 
+      apt: 
+        name: php
+        state: absent
+        update_cache: yes
+    - name: Un-Install Php-libcache
+      apt: 
+        name: libapache2-mod-php
+        state: absent
+        update_cache: yes
+    - name: Un-Install Php-mysql
+      apt: 
+        name: php-mysql
+        state: absent
+        update_cache: yes
+    - name: Un-Install Php-cli
+      apt: 
+        name: php-cli
+        state: absent
+        update_cache: yes
+    - name: Remove php.info
+      file:
+        path: /var/www/html/info.php
+        state: absent
+    - name: Restart apache2 server
+      service:
+        name: apache2
+        state: restarted

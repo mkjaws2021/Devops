@@ -1,0 +1,47 @@
+---
+  - name: Install apache on Ubuntu and Centos
+    hosts: webserver
+    become: yes
+    vars: 
+      tomcat_download_uri: "https://downloads.apache.org/tomcat/tomcat-8/v8.5.61/bin/apache-tomcat-8.5.61.zip"
+      tomcat_download_path: "/tmp/apache-tomcat-8.5.61.zip"
+      user_name: tomcat
+      jdk_package_name:  openjdk-8-jdk
+    tasks:
+      - name: Install apache2 server
+        package:
+          name: "{{ jdk_package_name }}"
+          state: present
+        when: ansible_facts['distribution'] == "Ubuntu"
+      - name: Add group
+        group:
+          name: "{{ user_name }}"
+          state: present
+        when: ansible_facts['distribution'] == "Ubuntu"
+      - name: Add user
+        user:
+          name: "{{ user_name }}"
+          home: /opt/tomcat
+          shell: /bin.bash
+          state: present
+          group: "{{ user_name }}"
+          password: $6$fP.2G.zIu7MbT8W$6IQ1Rgsd88Fovpd5hsaRk.6wd65r9wcMvFrQKwQgzNopdEQJpywZaIwJogyPsZHANnvSSiF80p/GL8L.GRE8B/
+        when: ansible_facts['distribution'] == "Ubuntu"
+      - name: download tomcat
+        get_url:
+          url: "{{ tomcat_download_uri }}"
+          dest: "{{ tomcat_download_path }}"
+          mode: "0440"
+        when: ansible_facts['distribution'] == "Ubuntu"
+      - name: install Unzip
+        package:
+          name: unzip
+          state: present
+        when: ansible_facts['distribution'] == "Ubuntu"
+      - name: extract tomcat
+        unarchive:
+          remote_src: yes
+          src: "{{ tomcat_download_path }}"
+          dest: "/opt/tomcat"
+        when: ansible_facts['distribution'] == "Ubuntu"
+

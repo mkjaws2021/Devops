@@ -1,0 +1,30 @@
+---
+- name: Uninstall Lamp server on ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - name: Uninstall Apache2 server
+      apt: 
+        name: apache2
+        state: absent
+        update_cache: yes
+    - name: Uninstall Php 
+      apt: 
+        name: php
+        state: absent
+        update_cache: yes
+    - name: Uninstall Php-libcache
+      apt: 
+        name: libapache2-mod-php
+        state: absent
+        update_cache: yes
+    - name: Uninstall Php-mysql
+      apt: 
+        name: php-mysql
+        state: absent
+        update_cache: yes
+    - name: Uninstall Php-cli
+      apt: 
+        name: php-cli
+        state: absent
+        update_cache: yes   

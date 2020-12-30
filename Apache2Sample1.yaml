@@ -1,0 +1,10 @@
+---
+-   name: Intall apache2 playbook
+    hosts: all
+    become: yes
+    tasks:
+       - name: Install apache2 into server
+         apt: 
+          name: apache2
+          state: present
+          update_cache: yes

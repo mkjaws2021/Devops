@@ -1,0 +1,9 @@
+---
+  - name: Loop variable testing
+    hosts: all
+    become: yes
+    tasks:
+       - name: Show all hosts in inventory
+         debug:
+           msg: "{{ item }}"
+         loop: "{{ groups['centos'] }}"

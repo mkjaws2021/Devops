@@ -1,0 +1,11 @@
+---
+  - name : Add user ansible
+    hosts: all
+    become: yes
+    tasks: 
+      - name: Add user 
+        user:
+          name: ansible
+          comment: ansible user
+          shell: /bin/bash
+          password: $6$l70Aqvxf7fgnid$Asgfb2DH6TATceFk8WfKM7SGXkblPlWAegI3VyAPyP6iLX5UeX/SdnPiaNZUKF.kcEEKtoIsSJtfpYyeESqfQ/ 
